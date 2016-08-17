@@ -314,7 +314,7 @@ static struct p7gpio_filter_phase ev_irq_gpios_filter[] = {
  *   vertival camera,
  *   MEM2MEM device (scaler and ISP)
  */
-#define EVINRUDE_VIDEO_MEMORY_SIZE (206*1024*1024)
+#define EVINRUDE_VIDEO_MEMORY_SIZE (232*1024*1024)
 
 /*******
  * PWM *
@@ -548,6 +548,54 @@ static struct platform_device ev_hdmi_pdev = {
 	.id   = 0,
 };
 
+/* CAM0 */
+static unsigned long ev_cam_h_cam0_pinconf[] = {
+	P7CTL_SMT_CFG(OFF) /* no shimmt trigger */
+};
+
+/* Horizontal camera (on CAM0) */
+static struct pinctrl_map cam_h_mt9f002_evinrude_pins[] __initdata = {
+	P7_INIT_PINMAP(P7_CAM_0_CLK),
+	P7_INIT_PINMAP(P7_CAM_0_HS),
+	P7_INIT_PINCFG(P7_CAM_0_HS, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_VS),
+	P7_INIT_PINCFG(P7_CAM_0_VS, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA08),
+	P7_INIT_PINCFG(P7_CAM_0_DATA08, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA09),
+	P7_INIT_PINCFG(P7_CAM_0_DATA09, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA10),
+	P7_INIT_PINCFG(P7_CAM_0_DATA10, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA11),
+	P7_INIT_PINCFG(P7_CAM_0_DATA11, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA12),
+	P7_INIT_PINCFG(P7_CAM_0_DATA12, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA13),
+	P7_INIT_PINCFG(P7_CAM_0_DATA13, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA14),
+	P7_INIT_PINCFG(P7_CAM_0_DATA14, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA15),
+	P7_INIT_PINCFG(P7_CAM_0_DATA15, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA16),
+	P7_INIT_PINCFG(P7_CAM_0_DATA16, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA17),
+	P7_INIT_PINCFG(P7_CAM_0_DATA17, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA18),
+	P7_INIT_PINCFG(P7_CAM_0_DATA18, ev_cam_h_cam0_pinconf),
+	P7_INIT_PINMAP(P7_CAM_0_DATA19),
+	P7_INIT_PINCFG(P7_CAM_0_DATA19, ev_cam_h_cam0_pinconf),
+};
+
+static union avi_cam_interface cam_h_interface_evinrude = {
+	.itu656     = 0,
+	.pad_select = 1,
+	.ivs	    = 1,
+	.ihs	    = 1,
+	.ipc	    = 0,
+	.psync_en   = 1,
+	.psync_rf   = 1,
+};
+
 /***************
  * GPIO export *
  ***************/
@@ -747,7 +795,8 @@ static void __init evinrude_init_mach(void)
 	drone_common_init_cam_v_mt9v117(ev_hsis.camera_v_mclk,
 					ev_hsis.camera_v_pwdn);
 	drone_common_init_cam_h_mt9f002(ev_hsis.camera_h_mclk,
-					ev_hsis.camera_h_pwdn);
+					ev_hsis.camera_h_pwdn, &cam_h_interface_evinrude,
+					cam_h_mt9f002_evinrude_pins, ARRAY_SIZE(cam_h_mt9f002_evinrude_pins));
 
 	/* Init MEM2MEM (use default) */
 	drone_common_init_m2m(NULL);
@@ -771,7 +820,7 @@ static void __init evinrude_init_mach(void)
 	drone_common_init_ms5607(MS5607_I2C_BUS);
 
 	/* Init BLDC */
-	drone_common_init_bldc(BLDC_I2C_BUS, -1);
+	drone_common_init_bldc(BLDC_I2C_BUS, ev_hsis.reset_psoc);
 
 	/* Init FAN */
 	drone_common_init_fan(ev_hsis.fan);

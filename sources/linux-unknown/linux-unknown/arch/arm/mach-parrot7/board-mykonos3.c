@@ -327,7 +327,7 @@ static struct p7gpio_filter_phase mk3_irq_gpios_filter[] = {
  *   vertival camera,
  *   MEM2MEM device (scaler and ISP)
  */
-#define MYKONOS3_VIDEO_MEMORY_SIZE (206*1024*1024)
+#define MYKONOS3_VIDEO_MEMORY_SIZE (232*1024*1024)
 
 /*******
  * PWM *
@@ -726,7 +726,7 @@ static void __init mykonos3x_init_mach(enum mk3_hardware_board board)
 	drone_common_init_cam_v_mt9v117(mk3_hsis.camera_v_mclk,
 					mk3_hsis.camera_v_pwdn);
 	drone_common_init_cam_h_mt9f002(mk3_hsis.camera_h_mclk,
-					mk3_hsis.camera_h_pwdn);
+					mk3_hsis.camera_h_pwdn, NULL, NULL, 0);
 
 	/* Init MEM2MEM (use default) */
 	drone_common_init_m2m(NULL);

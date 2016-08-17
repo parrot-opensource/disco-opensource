@@ -272,45 +272,23 @@ void __init drone_common_init_us_tx(void)
 #define CAMERA_H_MT9F002_I2C_INFO		I2C_BOARD_INFO("mt9f002", 0x10)
 #define CAMERA_H_MT9F002_I2C_BUS		0
 
-static unsigned long drone_cam0_pinconf[] = {
-	P7CTL_SMT_CFG(OFF)   | /* no shimmt trigger */
-	P7CTL_PUD_CFG(HIGHZ) | /* no pull up/down unable */
-	P7CTL_SLR_CFG(3)     | /* Slew rate 3 */
-	P7CTL_DRV_CFG(1),      /* Drive strength 1(reg=3) */
-};
-
 /* Horizontal camera (on CAM0) */
 static struct pinctrl_map cam_h_mt9f002_pins[] __initdata = {
 	P7_INIT_PINMAP(P7_CAM_0_CLK),
-	P7_INIT_PINCFG(P7_CAM_0_CLK, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_HS),
-	P7_INIT_PINCFG(P7_CAM_0_HS, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_VS),
-	P7_INIT_PINCFG(P7_CAM_0_VS, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA08),
-	P7_INIT_PINCFG(P7_CAM_0_DATA08, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA09),
-	P7_INIT_PINCFG(P7_CAM_0_DATA09, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA10),
-	P7_INIT_PINCFG(P7_CAM_0_DATA10, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA11),
-	P7_INIT_PINCFG(P7_CAM_0_DATA11, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA12),
-	P7_INIT_PINCFG(P7_CAM_0_DATA12, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA13),
-	P7_INIT_PINCFG(P7_CAM_0_DATA13, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA14),
-	P7_INIT_PINCFG(P7_CAM_0_DATA14, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA15),
-	P7_INIT_PINCFG(P7_CAM_0_DATA15, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA16),
-	P7_INIT_PINCFG(P7_CAM_0_DATA16, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA17),
-	P7_INIT_PINCFG(P7_CAM_0_DATA17, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA18),
-	P7_INIT_PINCFG(P7_CAM_0_DATA18, drone_cam0_pinconf),
 	P7_INIT_PINMAP(P7_CAM_0_DATA19),
-	P7_INIT_PINCFG(P7_CAM_0_DATA19, drone_cam0_pinconf),
 };
 
 /* When driver is available */
@@ -462,7 +440,7 @@ static struct i2c_board_info cam_h_mt9f002_info = {
 	CAMERA_H_MT9F002_I2C_INFO
 };
 
-void __init drone_common_init_cam_h_mt9f002(int gpio_pwm, int gpio_en)
+void __init drone_common_init_cam_h_mt9f002(int gpio_pwm, int gpio_en, union avi_cam_interface *cam_interface, struct pinctrl_map *cam_pins, size_t pin_cnt)
 {
 #ifdef DRIVER_VIDEO_MT9F002
 	/* Set GPIOs */
@@ -470,9 +448,15 @@ void __init drone_common_init_cam_h_mt9f002(int gpio_pwm, int gpio_en)
 	cam_h_mt9f002_en = gpio_en;
 #endif
 
+	if (cam_interface)
+		memcpy(&cam_h_mt9f002_pdata.interface, cam_interface, sizeof(*cam_interface));
+	if (!cam_pins) {
+		cam_pins = cam_h_mt9f002_pins;
+		pin_cnt = ARRAY_SIZE(cam_h_mt9f002_pins);
+	}
 	/* Add MT9F002 horizontal camera */
 	p7_init_avicam(&cam_h_mt9f002_dev, &cam_h_mt9f002_pdata,
-		       cam_h_mt9f002_pins, ARRAY_SIZE(cam_h_mt9f002_pins));
+		       cam_pins, pin_cnt);
 
 	/* Init I2C camera device */
 	p7brd_export_i2c_hw_infos(CAMERA_H_MT9F002_I2C_BUS,

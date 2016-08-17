@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.0.0**  
+Firmware version: **1.0.2**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
