@@ -1,0 +1,16 @@
+# the standard variables don't make sense for an uninstalled copy
+prefix=
+exec_prefix=
+libdir=
+# includedir is builddir because it is used to find gstconfig.h in places
+includedir=@abs_top_builddir@/gst-libs
+pluginsdir=@abs_top_builddir@
+
+Name: GStreamer Base Plugins Libraries, Uninstalled
+Description: Streaming media framework, base plugins libraries, uninstalled
+Version: @VERSION@
+Requires: gstreamer-@GST_API_VERSION@
+Libs: -L@abs_top_builddir@/gst-libs/gst/allocators/.libs -L@abs_top_builddir@/gst-libs/gst/app/.libs -L@abs_top_builddir@/gst-libs/gst/audio/.libs -L@abs_top_builddir@/gst-libs/gst/fft/.libs -L@abs_top_builddir@/gst-libs/gst/pbutils/.libs -L@abs_top_builddir@/gst-libs/gst/riff/.libs -L@abs_top_builddir@/gst-libs/gst/rtp/.libs -L@abs_top_builddir@/gst-libs/gst/rtsp/.libs -L@abs_top_builddir@/gst-libs/gst/sdp/.libs -L@abs_top_builddir@/gst-libs/gst/tag/.libs -L@abs_top_builddir@/gst-libs/gst/video/.libs
+Cflags: -I@abs_top_srcdir@/gst-libs -I@abs_top_builddir@/gst-libs
+
+libraries=allocators app audio fft pbutils riff rtp rtsp sdp tag video

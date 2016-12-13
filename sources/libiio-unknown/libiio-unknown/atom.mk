@@ -32,9 +32,51 @@ LOCAL_CFLAGS := $(COMMON_IIO_CFLAGS)
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
 
+LOCAL_EXPORT_CFLAGS := -DHAVE_LIBIIO
+
 LOCAL_LDLIBS := -ldl
 
 include $(BUILD_LIBRARY)
+
+###############################################################################
+# iiod
+###############################################################################
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := iiod
+LOCAL_DESCRIPTION := Linux Industrial I/O (IIO) devices network daemon
+LOCAL_CATEGORY_PATH := libs/libiio
+
+LOCAL_LIBRARIES := libiio
+
+IIOD_BUILD_DIR := $(call local-get-build-dir)
+
+LOCAL_PREREQUISITES += \
+	$(IIOD_BUILD_DIR)/parser.h
+
+$(IIOD_BUILD_DIR)/lexer.c: $(LOCAL_PATH)/iiod/lexer.l
+	$(Q) flex -o $@  $<
+
+$(IIOD_BUILD_DIR)/parser.c \
+$(IIOD_BUILD_DIR)/parser.h: $(LOCAL_PATH)/iiod/parser.y
+	$(Q) $(BISON_BIN) -d -o $(IIOD_BUILD_DIR)/parser.c $<
+
+LOCAL_SRC_FILES := \
+	iiod/iiod.c \
+	iiod/ops.c
+
+LOCAL_GENERATED_SRC_FILES := \
+	parser.c \
+	lexer.c
+
+LOCAL_C_INCLUDES := \
+	$(LOCAL_PATH)/iiod \
+	$(IIOD_BUILD_DIR)
+
+LOCAL_CFLAGS := $(COMMON_IIO_CFLAGS)
+
+include $(BUILD_EXECUTABLE)
 
 ###############################################################################
 # libiio-plugins-private

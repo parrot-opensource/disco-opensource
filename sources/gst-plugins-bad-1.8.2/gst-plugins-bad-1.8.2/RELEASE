@@ -1,0 +1,128 @@
+
+Release notes for GStreamer Bad Plugins 1.8.2
+
+The GStreamer team is proud to announce the second bugfix release in the stable
+1.8 release series of your favourite cross-platform multimedia framework!
+
+
+This release only contains bugfixes and it is safe to update from 1.8.1. For a
+full list of bugfixes see Bugzilla.
+
+
+See /releases/1.8/ for the full release notes.
+
+
+"That an accusation?"
+
+
+No perfectly groomed moustache or any amount of fine clothing is going to
+cover up the truth - these plugins are Bad with a capital B.
+They look fine on the outside, and might even appear to get the job done, but
+at the end of the day they're a black sheep. Without a golden-haired angel
+to watch over them, they'll probably land in an unmarked grave at the final
+showdown.
+
+
+Don't bug us about their quality - exercise your Free Software rights,
+patch up the offender and send us the patch on the fastest steed you can
+steal from the Confederates. Because you see, in this world, there's two
+kinds of people, my friend: those with loaded guns and those who dig.
+You dig.
+
+
+This module contains a set of plugins that aren't up to par compared to the
+rest.  They might be close to being good quality, but they're missing something
+- be it a good code review, some documentation, a set of tests, a real live
+maintainer, or some actual wide use.  If the blanks are filled in they might be
+upgraded to become part of either gst-plugins-good or gst-plugins-ugly,
+depending on the other factors.
+If the plugins break, you can't complain - instead, you can fix the
+problem and send us a patch, or bribe someone into fixing them for you.
+New contributors can start here for things to work on.
+
+
+Other modules containing plugins are:
+
+
+gst-plugins-base
+contains a basic set of well-supported plugins
+gst-plugins-good
+contains a set of well-supported plugins under our preferred license
+gst-plugins-ugly
+contains a set of well-supported plugins, but might pose problems for
+    distributors
+gst-libav
+contains a set of codecs plugins based on libav (formerly gst-ffmpeg)
+
+
+
+  
+
+Bugs fixed in this release
+     
+      * 756948 : directsoundsrc - Audio Device not found on Windows (string encoding not honored)
+      * 764758 : vulkan didn't build out of tree due to vkconfig.h
+      * 765324 : compositor: crashes on NULL pointer in _aggregate_frames()
+      * 765456 : vtdec: Strange bug re-encoding video with GST 1.8.1 on Mac OS 10.10
+      * 765926 : mpegtsmux: Set PTS on aligned buffers
+      * 766190 : vtdec: corrupted rendering on OSX
+      * 766213 : openjpeg plugin needs to be ported to libopenjp2 v2.1
+      * 766289 : amc: cannot play some files on android
+      * 766422 : videoaggregator: rtspsrc ! compositor produces no output
+      * 766441 : OpenBSD does not use librt, but provides the needed functions in libc
+      * 766520 : gl: win32: race when handling window messages while creating the internal window
+      * 766611 : gl: buffer pool configuration error with caopengllayersink
+      * 766638 : ahc: fix possible NULL deref
+      * 766732 : openjpegenc: Doesn't manage MCT switch for RGB and YUV frames
+      * 767298 : amc: gst_object_unref on caps
+      * 767302 : ahcsrc: div by 0 warning
+
+==== Download ====
+
+You can find source releases of gst-plugins-bad in the download
+directory: https://gstreamer.freedesktop.org/src/gst-plugins-bad/
+
+The git repository and details how to clone it can be found at
+http://cgit.freedesktop.org/gstreamer/gst-plugins-bad/
+
+==== Homepage ====
+
+The project's website is https://gstreamer.freedesktop.org/
+
+==== Support and Bugs ====
+
+We use GNOME's bugzilla for bug reports and feature requests:
+http://bugzilla.gnome.org/enter_bug.cgi?product=GStreamer
+
+Please submit patches via bugzilla as well.
+
+For help and support, please subscribe to and send questions to the
+gstreamer-devel mailing list (see below for details).
+
+There is also a #gstreamer IRC channel on the Freenode IRC network.
+
+==== Developers ====
+
+GStreamer is stored in Git, hosted at git.freedesktop.org, and can be cloned
+from there (see link above).
+
+Interested developers of the core library, plugins, and applications should
+subscribe to the gstreamer-devel list.
+
+        
+Contributors to this release
+    
+      * Aaron Boxer
+      * Alessandro Decina
+      * Alex-P. Natsios
+      * Arun Raghavan
+      * Guillaume Desmottes
+      * Jan Alexander Steffens (heftig)
+      * Martin Kelly
+      * Matthew Waters
+      * Nicolas Dufresne
+      * Nirbheek Chauhan
+      * Olivier Crête
+      * Sebastian Dröge
+      * Xavier Claessens
+ 

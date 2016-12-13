@@ -1,0 +1,114 @@
+
+Release notes for GStreamer Base Plugins 1.8.2
+
+The GStreamer team is proud to announce the second bugfix release in the stable
+1.8 release series of your favourite cross-platform multimedia framework!
+
+
+This release only contains bugfixes and it is safe to update from 1.8.1. For a
+full list of bugfixes see Bugzilla.
+
+
+See /releases/1.8/ for the full release notes.
+
+
+This module contains a set of reference plugins, base classes for other
+plugins, and helper libraries. It also includes essential elements such
+as audio and video format converters, and higher-level components like playbin,
+decodebin, encodebin, and discoverer.
+
+This module is kept up-to-date together with the core developments.  Element
+writers should look at the elements in this module as a reference for
+their development.
+
+This module contains elements for, among others:
+
+  device plugins: x(v)imagesink, alsa, v4lsrc, cdparanoia
+  containers: ogg
+  codecs: vorbis, theora
+  text: textoverlay, subparse
+  sources: audiotestsrc, videotestsrc, giosrc
+  network: tcp
+  typefind functions
+  audio processing: audioconvert, adder, audiorate, audioresample, volume
+  visualisation: libvisual
+  video processing: videoconvert, videoscale
+  high-level components: playbin, uridecodebin, decodebin, encodebin, discoverer
+  libraries: app, audio, fft, pbutils, riff, rtp, rtsp, sdp, tag, video
+
+
+Other modules containing plugins are:
+
+
+gst-plugins-good
+contains a set of well-supported plugins under our preferred license
+gst-plugins-ugly
+contains a set of well-supported plugins, but might pose problems for
+    distributors
+gst-plugins-bad
+contains a set of less supported plugins that haven't passed the
+    rigorous quality testing we expect, or are still missing documentation
+    and/or unit tests
+gst-libav
+contains a set of codecs plugins based on libav (formerly gst-ffmpeg)
+
+
+
+  
+
+Bugs fixed in this release
+     
+      * 765534 : encoding-profile: Remove codec_data and streamheader fields from constraint caps
+      * 765538 : codec-utils: Don't put level=0 into the caps
+      * 765541 : smartencoder: Only accept TIME segments for real
+      * 765684 : opusdec: Won't negotiate sampling rate anymore
+      * 765706 : opusdec: caps leak in gst_opus_dec_negotiate()
+      * 765708 : encoding-profile: Make creation of encoding profile from discoverer info more robust
+      * 766204 : sdp: rtpjpegdepay regression: Does not extract frame dimensions from SDP anymore
+      * 766265 : opusdec with FEC breaks when packet sizes change
+      * 766510 : videosink: test_video_center_rect raise a warning when turning on debug
+      * 766515 : playbin: fix suburidecodebin leak
+      * 767163 : video-color: Fix colorimetry IS_UNKNOWN
+
+==== Download ====
+
+You can find source releases of gst-plugins-base in the download
+directory: https://gstreamer.freedesktop.org/src/gst-plugins-base/
+
+The git repository and details how to clone it can be found at
+http://cgit.freedesktop.org/gstreamer/gst-plugins-base/
+
+==== Homepage ====
+
+The project's website is https://gstreamer.freedesktop.org/
+
+==== Support and Bugs ====
+
+We use GNOME's bugzilla for bug reports and feature requests:
+http://bugzilla.gnome.org/enter_bug.cgi?product=GStreamer
+
+Please submit patches via bugzilla as well.
+
+For help and support, please subscribe to and send questions to the
+gstreamer-devel mailing list (see below for details).
+
+There is also a #gstreamer IRC channel on the Freenode IRC network.
+
+==== Developers ====
+
+GStreamer is stored in Git, hosted at git.freedesktop.org, and can be cloned
+from there (see link above).
+
+Interested developers of the core library, plugins, and applications should
+subscribe to the gstreamer-devel list.
+
+        
+Contributors to this release
+    
+      * Guillaume Desmottes
+      * Hyunjun Ko
+      * Olivier Crête
+      * Sebastian Dröge
+      * Stian Selnes
+      * Thiago Santos
+ 

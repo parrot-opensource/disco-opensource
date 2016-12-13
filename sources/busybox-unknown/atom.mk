@@ -15,7 +15,7 @@ LOCAL_CATEGORY_PATH := system
 
 # Variables
 BUSYBOX_DIR := $(LOCAL_PATH)
-BUSYBOX_VERSION := 1.20.2
+BUSYBOX_VERSION := 1.25.0
 BUSYBOX_ARCHIVE_FILE := $(LOCAL_PATH)/busybox-$(BUSYBOX_VERSION).tar.bz2
 
 # Build directory and source sirectory inside build directory (after unpacking)
@@ -25,20 +25,15 @@ BUSYBOX_UNPACKED_FILE := $(BUSYBOX_BUILD_DIR)/busybox.unpacked
 
 # Patches
 BUSYBOX_PATCHES := \
-	busybox-1.20.2-kernel_ver.patch \
-	busybox-1.20.2-pkg-config-selinux.patch \
-	busybox-1.20.2-sys-resource.patch \
-	busybox-1.20.2-bin_init.patch \
-	init-make-the-command-line-rewrite-optional.patch
+	busybox-1.25.0-bin_init.patch \
+	busybox-1.25.0-clang.patch
 
 ifeq ("$(TARGET_LIBC)","bionic")
 BUSYBOX_PATCHES += \
-	busybox-1.20.2-bionic-mount-umount-fsck-df.patch \
-	busybox-1.20.2-bionic-route-sys-socket.patch \
-	busybox-1.20.2-bionic-link.patch \
-	busybox-1.20.2-bionic-stat.patch \
-	busybox-1.20.2-bionic-stime.patch \
-	busybox-1.20.2-bionic-force-install-bin-dir.patch
+	busybox-1.25.0-bionic-mount-umount-fsck-df.patch \
+	busybox-1.25.0-bionic-route-sys-socket.patch \
+	busybox-1.25.0-bionic-link.patch \
+	busybox-1.25.0-bionic-force-install-bin-dir.patch
 endif
 
 # Busybox configuration file
