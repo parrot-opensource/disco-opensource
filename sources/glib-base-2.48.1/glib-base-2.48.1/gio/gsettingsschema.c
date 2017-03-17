@@ -932,14 +932,18 @@ const gchar *
 g_settings_schema_get_string (GSettingsSchema *schema,
                               const gchar     *key)
 {
+  GSettingsSchema *s = schema;
   const gchar *result = NULL;
   GVariant *value;
 
-  if ((value = gvdb_table_get_raw_value (schema->table, key)))
-    {
-      result = g_variant_get_string (value, NULL);
-      g_variant_unref (value);
-    }
+  for (s = schema; s; s = s->extends) {
+    if ((value = gvdb_table_get_raw_value (s->table, key)))
+      {
+        result = g_variant_get_string (value, NULL);
+        g_variant_unref (value);
+        break;
+      }
+  }
 
   return result;
 }

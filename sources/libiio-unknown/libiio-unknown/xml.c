@@ -127,11 +127,26 @@ static void setup_scan_element(struct iio_channel *chn, xmlNode *n)
 			chn->index = atol(content);
 		} else if (!strcmp(name, "format")) {
 			char e, s;
-			sscanf(content, "%ce:%c%u/%u>>%u", &e, &s,
+			unsigned int repeat = 1;
+			int ret = sscanf(content, "%ce:%c%u/%uX%u>>%u", &e, &s,
 					&chn->format.bits,
 					&chn->format.length,
+					&repeat,
 					&chn->format.shift);
-			chn->format.is_be = e == 'b';
+			if (ret != 6) {
+				ret = sscanf(content, "%ce:%c%u/%u>>%u", &e, &s,
+						&chn->format.bits,
+						&chn->format.length,
+						&chn->format.shift);
+				if (ret != 5) {
+					ERROR("cannot parse format '%s' !!",
+							content);
+					return;
+				}
+			}
+			chn->format.length *= repeat;
+			chn->format.bits *= repeat;
+			chn->format.is_be = (e == 'b');
 			chn->format.is_signed = (s == 's' || s == 'S');
 			chn->format.is_fully_defined = (s == 'S' || s == 'U' ||
 				chn->format.bits == chn->format.length);

@@ -2139,6 +2139,7 @@ G_GNUC_END_IGNORE_DEPRECATIONS
   g_assert (strv_set_equal ((gchar **)relocs,
                             "org.gtk.test.no-path",
                             "org.gtk.test.extends.base",
+                            "org.gtk.test.extends.base.child",
                             "org.gtk.test.extends.extended",
                             NULL));
 
@@ -2550,6 +2551,7 @@ test_extended_schema (void)
 {
   GSettingsSchema *schema;
   GSettings *settings;
+  GSettings *child;
   gchar **keys;
 
   settings = g_settings_new_with_path ("org.gtk.test.extends.extended", "/test/extendes/");
@@ -2557,6 +2559,15 @@ test_extended_schema (void)
   keys = g_settings_schema_list_keys (schema);
   g_assert (strv_set_equal (keys, "int32", "string", "another-int32", NULL));
   g_strfreev (keys);
+
+  keys = g_settings_schema_list_children (schema);
+  g_assert (strv_set_equal (keys, "base-child", NULL));
+  g_strfreev (keys);
+
+  child = g_settings_get_child (settings, "base-child");
+  g_assert_nonnull (child);
+  g_object_unref (child);
+
   g_object_unref (settings);
   g_settings_schema_unref (schema);
 }

@@ -193,6 +193,12 @@
     <key name='string' type='s'>
       <default>''</default>
     </key>
+    <child name='base-child' schema='org.gtk.test.extends.base.child'/>
+  </schema>
+  <schema id='org.gtk.test.extends.base.child'>
+    <key name='child-int32' type='i'>
+      <default>0</default>
+    </key>
   </schema>
   <schema id='org.gtk.test.extends.extended' extends='org.gtk.test.extends.base'>
     <override name="int32">42</override>

@@ -63,7 +63,6 @@ APM_COPTER_BEBOP_SRC_DIRS := \
 LOCAL_SRC_FILES := \
 	$(foreach dir,$(APM_COPTER_BEBOP_SRC_DIRS),$(call all-cpp-files-in,../../$(dir)))
 
-LOCAL_COPY_FILES = 50-arducopter.rc:etc/boxinit.d/
 ifeq ($(CONFIG_ARDUPILOT_MILOS),y)
 LOCAL_COPY_FILES += ../Frame_params/Parrot_Bebop2.param:etc/arducopter/bebop.parm
 else
@@ -82,6 +81,9 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_LIBRARIES := \
 	$(APM_COMMON_LIBRARIES)
+
+LOCAL_LDLIBS := \
+	-ldl
 
 include $(BUILD_EXECUTABLE)
 
@@ -121,8 +123,6 @@ LOCAL_LIBRARIES := \
 	$(APM_COMMON_LIBRARIES)
 
 LOCAL_COPY_FILES = \
-	50-apm-plane-disco.rc:etc/boxinit.d/ \
-	apm-plane-disco.sh:usr/bin/ \
 	../Frame_params/Parrot_Disco/Parrot_Disco.param:etc/arduplane/disco.parm
 
 LOCAL_LDLIBS := \

@@ -1507,15 +1507,25 @@ static void init_data_format(struct iio_channel *chn)
 			chn->format.length = 0;
 		} else {
 			char endian, sign;
+			unsigned int repeat = 1;
 
-			sscanf(buf, "%ce:%c%u/%u>>%u", &endian, &sign,
+			if (sscanf(buf, "%ce:%c%u/%uX%u>>%u", &endian, &sign,
 					&chn->format.bits, &chn->format.length,
-					&chn->format.shift);
+					&repeat, &chn->format.shift) != 6 &&
+				sscanf(buf, "%ce:%c%u/%u>>%u", &endian, &sign,
+					&chn->format.bits, &chn->format.length,
+					&chn->format.shift) < 4)
+				ERROR("Unknown '%s' channel data format: %s\n",
+						chn->name, buf);
+
 			chn->format.is_signed = (sign == 's' || sign == 'S');
 			chn->format.is_fully_defined =
 					(sign == 'S' || sign == 'U'||
 					chn->format.bits == chn->format.length);
 			chn->format.is_be = endian == 'b';
+
+			chn->format.length *= repeat;
+			chn->format.bits *= repeat;
 		}
 	}
 

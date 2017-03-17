@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.1.1**  
+Firmware version: **1.2.1**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
@@ -32,11 +32,12 @@ You can download Open Source Archives from following table:
 |GPL3|[apm-plane-disco](sources/apm-plane-disco-unknown)
 |GPL3|[libapm-telemetry](sources/libapm-telemetry-unknown)
 |GPL3|[rsync](sources/rsync-3.1.2)
+|GPL3|[out/evinrude-evinrude/build/readline6/readline6-6.3](sources/None)
 |LGPL|[glib-base](sources/glib-base-2.48.1)
-|LGPL|[gst-plugins-bad](sources/gst-plugins-bad-1.8.2)
-|LGPL|[gst-plugins-base](sources/gst-plugins-base-1.8.2)
-|LGPL|[gst-plugins-good](sources/gst-plugins-good-1.8.2)
-|LGPL|[gstreamer](sources/gstreamer-1.8.2)
+|LGPL|[gst-plugins-bad](sources/gst-plugins-bad-1.8.3)
+|LGPL|[gst-plugins-base](sources/gst-plugins-base-1.8.3)
+|LGPL|[gst-plugins-good](sources/gst-plugins-good-1.8.3)
+|LGPL|[gstreamer](sources/gstreamer-1.8.3)
 |LGPL|[libconfig](sources/libconfig-1.5)
 |LGPL|[libnl2](sources/libnl2-2.0)
 |LGPL|[lttng-ust](sources/lttng-ust-2.1.1)
