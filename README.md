@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.2.1**  
+Firmware version: **1.3.0**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
@@ -14,8 +14,8 @@ You can download Open Source Archives from following table:
 |---|---
 |GPL|[busybox](sources/busybox-unknown)
 |GPL|[ethtool](sources/ethtool-3.4.2)
-|GPL|[libelf](sources/libelf-0.152)
-|GPL|[lttng-ust (liblttng-ust-ctl/ustctl.c)](sources/lttng-ust-2.1.1)
+|GPL|[libelf](sources/libelf-0.167)
+|GPL|[lttng-ust (liblttng-ust-ctl/ustctl.c)](sources/lttng-ust-2.8.1)
 |GPL|[yavta](sources/yavta-unknown)
 |GPL2|[devmem](sources/devmem-unknown)
 |GPL2|[dnsmasq](sources/dnsmasq-2.66)
@@ -24,12 +24,11 @@ You can download Open Source Archives from following table:
 |GPL2|[iptables](sources/iptables-1.4.21)
 |GPL2|[linux](sources/linux-3.4.11)
 |GPL2|[lttng-modules](sources/lttng-modules-unknown)
-|GPL2|[lttng-tools](sources/lttng-tools-2.1.1)
+|GPL2|[lttng-tools](sources/lttng-tools-2.8.2)
 |GPL2|[udevadm](sources/udevadm-164)
 |GPL2|[udevd](sources/udevd-164)
 |GPL2|[util-linux-ng](sources/util-linux-ng-2.28)
 |GPL2|[wireless_tools](sources/wireless_tools-29)
-|GPL3|[apm-plane-disco](sources/apm-plane-disco-unknown)
 |GPL3|[libapm-telemetry](sources/libapm-telemetry-unknown)
 |GPL3|[rsync](sources/rsync-3.1.2)
 |GPL3|[out/evinrude-evinrude/build/readline6/readline6-6.3](sources/None)
@@ -40,7 +39,7 @@ You can download Open Source Archives from following table:
 |LGPL|[gstreamer](sources/gstreamer-1.8.3)
 |LGPL|[libconfig](sources/libconfig-1.5)
 |LGPL|[libnl2](sources/libnl2-2.0)
-|LGPL|[lttng-ust](sources/lttng-ust-2.1.1)
+|LGPL|[lttng-ust](sources/lttng-ust-2.8.1)
 |LGPL|[userspace-rcu](sources/userspace-rcu-0.9.1)
 |LGPL2|[avahi](sources/avahi-0.6.29)
 |LGPL2|[iio_genxml](sources/iio_genxml-unknown)

@@ -10,7 +10,7 @@ LOCAL_MODULE := udev
 LOCAL_DESCRIPTION := Meta-package which selects all udev components
 LOCAL_CATEGORY_PATH := devman/udev
 
-LOCAL_REQUIRED_MODULES := libudev libudev-private udevd 	udevadm
+LOCAL_REQUIRED_MODULES := libudev libudev-private udevd udevadm
 
 include $(BUILD_META_PACKAGE)
 
@@ -27,6 +27,7 @@ LOCAL_CATEGORY_PATH := devman/udev
 LOCAL_CFLAGS := \
 	-include "include/config.h"
 
+LOCAL_CFLAGS += -Wno-unused-result
 ifeq ("$(TARGET_CC_VERSION)","4.3.3")
 LOCAL_CFLAGS += \
 	-DSOCK_CLOEXEC=02000000
@@ -58,6 +59,7 @@ LOCAL_DESCRIPTION := Private library for udev executables
 LOCAL_CATEGORY_PATH := devman/udev
 
 LOCAL_CFLAGS := \
+	-Wno-unused-result \
 	-include "include/config.h"
 
 LOCAL_EXPORT_C_INCLUDES := \
@@ -84,6 +86,7 @@ LOCAL_DESCRIPTION := Daemon monitoring kernel events concerning hardware
 LOCAL_CATEGORY_PATH := devman/udev
 
 LOCAL_CFLAGS := \
+	-Wno-unused-result \
 	-include "include/config.h"
 
 ifeq ("$(TARGET_CC_VERSION)","4.3.3")
@@ -125,6 +128,7 @@ LOCAL_REQUIRED_MODULES := udevd
 LOCAL_CFLAGS := \
 	-include "include/config.h"
 
+LOCAL_CFLAGS += -Wno-unused-result
 ifeq ("$(TARGET_CC_VERSION)","4.3.3")
 LOCAL_CFLAGS += \
 	-DIN_CLOEXEC=02000000

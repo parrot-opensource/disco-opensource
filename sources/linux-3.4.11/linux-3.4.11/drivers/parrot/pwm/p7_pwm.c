@@ -667,10 +667,11 @@ static int __devinit servo_rx_probe(struct platform_device *pdev)
 				input_free_device(input_dev);
 				input_dev = NULL;
 			}
-			__raw_writel(0xf, mmio_base + P7PWM_SERVO_RX_IT_CFG);
-	        input_dev->open = servo_rx_open;
-			input_dev->close = servo_rx_close;
-
+			else {
+				__raw_writel(0xf, mmio_base + P7PWM_SERVO_RX_IT_CFG);
+				input_dev->open = servo_rx_open;
+				input_dev->close = servo_rx_close;
+			}
 		}
 	}
 	return 0;

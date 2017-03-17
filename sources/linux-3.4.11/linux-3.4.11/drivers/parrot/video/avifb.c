@@ -1582,17 +1582,13 @@ static int avifb_resize_overlay(struct fb_info *info,
 
 	/* Here's our heuristic: we see if the current overlay at its current
 	 * position still fits in the screen, if so we do nothing. Otherwise we
-	 * leave the overlay at the current position but we reduce its size to
+	 * leave the overlay at the current position but we adjust its size to
 	 * fit. */
 	max_width = vmode->xres - layout.x;
-
-	if (var->xres > max_width)
-		var->xres = max_width;
+	var->xres = max_width;
 
 	max_height = vmode->yres - layout.y;
-
-	if (var->yres > max_height)
-		var->yres = max_height;
+	var->yres = max_height;
 
 	avifb_compute_format(info, &in, &out);
 

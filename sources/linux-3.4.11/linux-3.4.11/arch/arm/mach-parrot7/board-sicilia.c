@@ -556,7 +556,7 @@ static void __init sicilia_init_multispec_cams(void)
 		pdata->interface         = sicilia_multispec_cam_interface;
 		pdata->bus_width         = 16;
 		pdata->subdevs           = subdevs;
-		pdata->vb2_cache_flags   = VB2_CACHE_DMA_CONTIG | VB2_CACHE_WRITETHROUGH;
+		pdata->vb2_cache_flags   = VB2_CACHE_DMA_CONTIG;
 
 		p7_reserve_avicammem(dev, MULTISPEC_CAM_RAM_SIZE);
 
@@ -1135,8 +1135,7 @@ static struct avi_m2m_platform_data sicilia_avi_m2m_pdata[] = {
 	{
 		.caps = AVI_CAPS_ISP,
 		.enable_stats = 0,
-		.vb2_cache_flags = VB2_CACHE_DMA_CONTIG |
-				   VB2_CACHE_FLUSH,
+		.vb2_cache_flags = VB2_CACHE_DMA_CONTIG,
 	},
 	{ .caps = 0 },
 };

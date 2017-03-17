@@ -21,6 +21,9 @@ define	IPROUTE2_WITH_IPTABLES
 	echo "TC_CONFIG_IPSET:=n" >>$(PRIVATE_SRC_DIR)/Config
 endef
 endif
+define	IPROUTE2_WITH_NETEM
+	echo "TC_CONFIG_NETEM:=y" >>$(PRIVATE_SRC_DIR)/Config
+endef
 
 LOCAL_LIBRARIES := iptables
 
@@ -40,6 +43,11 @@ define LOCAL_AUTOTOOLS_CMD_POST_CONFIGURE
 	sed -i "/^TARGETS=/s: arpd : :" $(PRIVATE_SRC_DIR)/misc/Makefile
 	echo "IPT_LIB_DIR:=/usr/lib/xtables" >>$(PRIVATE_SRC_DIR)/Config
 	$(IPROUTE2_WITH_IPTABLES)
+	sed -i "/TCSO :=/a \
+		ifeq ($(TC_CONFIG_NETEM),y) \
+		  TCSO += q_netem.so \
+		endif" $(PRIVATE_SRC_DIR)/Makefile
+	$(IPROUTE2_WITH_NETEM)
 
 endef
 

@@ -42,4 +42,8 @@ LOCAL_AUTOTOOLS_PATCHES := \
 			so_reuseport.patch \
 			avahi_daemon_services.patch
 
+# Remove unused debug feature which might prevent building
+LOCAL_AUTOTOOLS_PATCHES += remove_debug_trap.patch
+
+
 include $(BUILD_AUTOTOOLS)
