@@ -324,7 +324,7 @@ subst:
 			dev_parent = udev_device_get_parent(event->dev);
 			if (dev_parent == NULL)
 				break;
-				devnode = udev_device_get_devnode(dev_parent);
+			devnode = udev_device_get_devnode(dev_parent);
 			if (devnode != NULL) {
 				size_t devlen = strlen(udev_get_dev_path(event->udev))+1;
 

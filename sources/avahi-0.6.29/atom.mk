@@ -42,7 +42,8 @@ LOCAL_AUTOTOOLS_PATCHES := \
 	so_reuseport.patch \
 	iface-linux.patch \
 	avahi_daemon_services.patch \
-	netlink-unique-nl_pid.patch
+	netlink-unique-nl_pid.patch \
+	filter-denied-virtual-interfaces-when-adding-address.patch
 
 LOCAL_COPY_FILES := \
 	90-avahi-daemon.rc:etc/boxinit.d/

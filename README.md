@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.4.1**  
+Firmware version: **1.5.1**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
@@ -45,6 +45,7 @@ You can download Open Source Archives from following table:
 |LGPL2|[libdaemon](sources/libdaemon-0.14)
 |LGPL2|[libexif](sources/libexif-0.6.21)
 |LGPL2|[libmedia-ctl](sources/libmedia-ctl-unknown)
+|LGPL2|[libmtp-sf](sources/libmtp-sf-1.1.5)
 |LGPL2|[libnss-mdns](sources/libnss-mdns-0.10)
 |LGPL2|[libudev](sources/libudev-164)
 |LGPL2|[libudev-private](sources/libudev-private-164)
