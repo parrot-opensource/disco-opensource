@@ -1590,6 +1590,16 @@ static int avifb_resize_overlay(struct fb_info *info,
 	max_height = vmode->yres - layout.y;
 	var->yres = max_height;
 
+	/* Force a re-check of the variable configuration */
+	ret = avifb_check_var(var, info);
+	if (ret)
+		return ret;
+
+	/* Reconfigure private data and fb fix configuration */
+	ret = avifb_set_par(info);
+	if (ret)
+		return ret;
+
 	avifb_compute_format(info, &in, &out);
 
 	ret = avi_segment_set_format_and_layout(par->segment,

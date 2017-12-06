@@ -1,6 +1,0 @@
-*.so.*
-*.o
-*.plist
-test
-obj-*
-*.deb

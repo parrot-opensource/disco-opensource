@@ -14,8 +14,6 @@ LOCAL_DESCRIPTION := Ardupilot export module
 LOCAL_SRC_FILES := \
 	src/libapm-telemetry.c
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/include
-
 LOCAL_LIBRARIES := \
 	libulog \
 	libfutils \

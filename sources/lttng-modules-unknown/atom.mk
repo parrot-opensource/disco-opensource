@@ -14,7 +14,7 @@ LTTNG_MODULES_SRC_DIR := $(LTTNG_MODULES_BUILD_DIR)/$(LOCAL_MODULE)-$(LTTNG_MODU
 
 LOCAL_ARCHIVE := $(LOCAL_MODULE)-$(LTTNG_MODULES_VERSION).tar.bz2
 LOCAL_ARCHIVE_SUBDIR := $(LOCAL_MODULE)-$(LTTNG_MODULES_VERSION)
-LOCAL_ARCHIVE_PATCHES := parrot_trace.patch arm_64_remove_sched_getattr_and_setattr_syscalls.patch syscall_ret.patch
+LOCAL_ARCHIVE_PATCHES := parrot_trace.patch arm_64_remove_sched_getattr_and_setattr_syscalls.patch syscall_ret.patch clock_offset_null.patch
 
 # Make sure the -C parameter come after
 # $(LINUX_MAKE_ARGS) to override default value

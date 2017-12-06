@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.3.0**  
+Firmware version: **1.4.0**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
@@ -19,7 +19,7 @@ You can download Open Source Archives from following table:
 |GPL|[yavta](sources/yavta-unknown)
 |GPL2|[devmem](sources/devmem-unknown)
 |GPL2|[dnsmasq](sources/dnsmasq-2.66)
-|GPL2|[e2fsprogs](sources/e2fsprogs-1.42.11)
+|GPL2|[e2fsprogs](sources/e2fsprogs-1.42.12)
 |GPL2|[iproute2](sources/iproute2-3.9.0)
 |GPL2|[iptables](sources/iptables-1.4.21)
 |GPL2|[linux](sources/linux-3.4.11)
@@ -42,13 +42,8 @@ You can download Open Source Archives from following table:
 |LGPL|[lttng-ust](sources/lttng-ust-2.8.1)
 |LGPL|[userspace-rcu](sources/userspace-rcu-0.9.1)
 |LGPL2|[avahi](sources/avahi-0.6.29)
-|LGPL2|[iio_genxml](sources/iio_genxml-unknown)
-|LGPL2|[iio_info](sources/iio_info-unknown)
-|LGPL2|[iio_readdev](sources/iio_readdev-unknown)
-|LGPL2|[iio_reg](sources/iio_reg-unknown)
 |LGPL2|[libdaemon](sources/libdaemon-0.14)
 |LGPL2|[libexif](sources/libexif-0.6.21)
-|LGPL2|[libiio](sources/libiio-unknown)
 |LGPL2|[libmedia-ctl](sources/libmedia-ctl-unknown)
 |LGPL2|[libnss-mdns](sources/libnss-mdns-0.10)
 |LGPL2|[libudev](sources/libudev-164)

@@ -240,7 +240,7 @@ static struct i2c_board_info __initdata nap_hdmi_board_info = {
 #define NAP_IMU_I2C_BUS     1
 #define NAP_IMU_I2C_ADDR    0x68
 #define NAP_IMU_IRQ_GPIO    146
-#define NAP_IMU_ORIENTATION { 1, 0, 0, 0, 1, 0, 0, 0, 1 }
+#define NAP_IMU_ORIENTATION { 0, 1, 0, 1, 0, 0, 0, 0, -1 }
 
 static struct inv_mpu6050_platform_data nap_imu_pdata = {
 	.orientation = NAP_IMU_ORIENTATION,
@@ -262,7 +262,7 @@ static struct i2c_board_info __initdata nap_imu_board_info = {
 #define NAP_MAGNETO_I2C_BUS     2
 #define NAP_MAGNETO_I2C_ADDR    0x0c
 #define NAP_MAGNETO_IRQ_GPIO    142
-#define NAP_MAGNETO_ORIENTATION "-1, 0, 0; 0, -1, 0; 0, 0, 1;"
+#define NAP_MAGNETO_ORIENTATION "0, -1, 0; -1, 0, 0; 0, 0, -1;"
 
 static struct ak8975_platform_data nap_magneto_pdata = {
 	.orientation = NAP_MAGNETO_ORIENTATION,

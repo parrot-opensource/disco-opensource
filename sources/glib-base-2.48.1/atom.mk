@@ -136,7 +136,7 @@ compile-gsettings-schema: post-build
 	@if [ -f $(HOST_OUT_STAGING)/usr/bin/glib-compile-schemas ]; then \
 		echo "Compiling gsettings schemas"; \
 		mkdir -p $(dir $@); \
-		$(HOST_OUT_STAGING)/usr/bin/glib-compile-schemas \
+		$(HOST_OUT_STAGING)/usr/bin/glib-compile-schemas --strict \
 			--targetdir=$(TARGET_OUT_STAGING)/usr/share/glib-2.0/schemas \
 			$(TARGET_OUT_STAGING)/usr/share/glib-2.0/schemas; \
 	else \

@@ -48,7 +48,7 @@ endif
 
 BUSYBOX_CFLAGS := \
 	$(TARGET_GLOBAL_CFLAGS) \
-	-Wno-sign-compare -Wno-error=format-security \
+	-Wno-sign-compare -Wno-error=format-security -Wno-unused-result \
 	$(call normalize-c-includes,$(TARGET_GLOBAL_C_INCLUDES))
 
 # Make arguments
@@ -123,9 +123,14 @@ busybox-clean:
 			|| echo "Ignoring clean errors"; \
 	fi
 
+# Copy udhcpd related files if udhcpd selected in busybox config file
+ifneq ("$(wildcard $(BUSYBOX_CONFIG_FILE))","")
+ifneq ("$(shell grep "^CONFIG_UDHCPD=y" $(BUSYBOX_CONFIG_FILE))","")
 LOCAL_COPY_FILES += \
 	20-udhcpd.rc:etc/boxinit.d/ \
 	udhcpd.leases:etc/
+endif
+endif
 
 include $(BUILD_CUSTOM)
 
