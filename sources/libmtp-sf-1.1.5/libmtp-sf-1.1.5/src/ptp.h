@@ -681,6 +681,7 @@ typedef struct _PTPIPHeader PTPIPHeader;
 #define PTP_OC_PARROT_SEQUOIA_MagnetoCalibStatus	0x9212
 #define PTP_OC_PARROT_SEQUOIA_SendFirmwareUpdate	0x9213
 #define PTP_OC_PARROT_SEQUOIA_SetGeotag			0x9400
+#define PTP_OC_PARROT_SEQUOIA_SetRelativeAttitude	0x9401
 #endif
 
 
@@ -881,6 +882,7 @@ typedef struct _PTPIPHeader PTPIPHeader;
 /* Parrot Sequoia device event codes */
 #define PTP_EC_PARROT_SEQUOIA_Status			0xC201
 #define PTP_EC_PARROT_SEQUOIA_MagnetoCalibrationStatus	0xC202
+#define PTP_EC_PARROT_SEQUOIA_PictureTime		0xC203
 #endif
 
 
@@ -1011,6 +1013,17 @@ struct _PTPGeotag {
 } __attribute__((packed));
 
 typedef struct _PTPGeotag PTPGeotag;
+
+struct _PTPRelativeAttitude {
+	int32_t BodyRoll;
+	int32_t BodyPitch;
+	int32_t BodyYaw;
+	int32_t IrrRoll;
+	int32_t IrrPitch;
+	int32_t IrrYaw;
+} __attribute__((packed));
+
+typedef struct _PTPRelativeAttitude PTPRelativeAttitude;
 
 #endif /* LIBMTP_SUPPORT_VENDOR_PARROT */
 
@@ -3489,6 +3502,8 @@ uint16_t
 ptp_parrot_get_status_mask (PTPParams* params, uint32_t *status);
 uint16_t
 ptp_parrot_set_geotag(PTPParams* params, PTPGeotag* geotag);
+uint16_t
+ptp_parrot_set_relativeattitude(PTPParams* params, PTPRelativeAttitude* relat);
 #endif
 
 

@@ -1,5 +1,5 @@
 Open Source Software used in **Parrot Disco**.  
-Firmware version: **1.5.2**  
+Firmware version: **1.7.0**  
 Unless stated otherwise, later versions of the firmware
 use these same software modules.
 
@@ -13,7 +13,6 @@ You can download Open Source Archives from following table:
 |License|Package
 |---|---
 |GPL|[busybox](sources/busybox-unknown)
-|GPL|[ethtool](sources/ethtool-3.4.2)
 |GPL|[libelf](sources/libelf-0.167)
 |GPL|[lttng-ust (liblttng-ust-ctl/ustctl.c)](sources/lttng-ust-2.8.1)
 |GPL|[yavta](sources/yavta-unknown)
